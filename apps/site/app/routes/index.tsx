@@ -11,7 +11,7 @@ import { renderMarkdoc } from "~/markdoc";
 export async function loader({ params, context: { env } }: LoaderArgs) {
   const path = params["*"] ?? ("index" as string);
 
-  const useGitHub = process.env.NODE_ENV === "production";
+  const useGitHub = env.NODE_ENV === "production";
   const markdown = await getMarkdownForPath(path, env.GITHUB_TOKEN, useGitHub);
 
   if (!markdown) {

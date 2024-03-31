@@ -2,9 +2,10 @@ import {
   json,
   type LinksFunction,
   type MetaFunction,
-  type LoaderArgs,
+  LoaderFunctionArgs
 } from "@remix-run/cloudflare";
 import {
+  ClientLoaderFunctionArgs,
   Links,
   LiveReload,
   Meta,
@@ -16,21 +17,21 @@ import {
 import styles from "./styles/tailwind.css";
 import "focus-visible";
 
-export const meta: MetaFunction = () => ({
-  charset: "utf-8",
-  title: "Superflare",
-  "twitter:title": "Superflare",
-  viewport: "width=device-width,initial-scale=1",
-  description:
-    "Superflare is a full-stack toolkit for building applications on Cloudflare Workers.",
-  "twitter:description":
-    "Superflare is a full-stack toolkit for building applications on Cloudflare Workers.",
-  "twitter:card": "summary_large_image",
-  "twitter:creator": "@jplhomer",
-  "og:type": "website",
-  "og:image": "https://superflare.dev/superflare-og.jpg",
-  "twitter:image": "https://superflare.dev/superflare-og.jpg",
-});
+// export const meta: MetaFunction = () => ({
+//   charset: "utf-8",
+//   title: "Superflare",
+//   "twitter:title": "Superflare",
+//   viewport: "width=device-width,initial-scale=1",
+//   description:
+//     "Superflare is a full-stack toolkit for building applications on Cloudflare Workers.",
+//   "twitter:description":
+//     "Superflare is a full-stack toolkit for building applications on Cloudflare Workers.",
+//   "twitter:card": "summary_large_image",
+//   "twitter:creator": "@jplhomer",
+//   "og:type": "website",
+//   "og:image": "https://superflare.dev/superflare-og.jpg",
+//   "twitter:image": "https://superflare.dev/superflare-og.jpg",
+// });
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -44,7 +45,7 @@ export const links: LinksFunction = () => [
   },
 ];
 
-export async function loader({ context: { env } }: LoaderArgs) {
+export async function loader({ context: { env } }: LoaderFunctionArgs) {
   return json({
     ENV: {
       DOCSEARCH_APP_ID: env.DOCSEARCH_APP_ID,

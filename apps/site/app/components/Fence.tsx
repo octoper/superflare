@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Highlight, { defaultProps, type Language } from "prism-react-renderer";
+import { type Language, Highlight } from "prism-react-renderer";
 
 export function Fence({
   children,
@@ -10,7 +10,6 @@ export function Fence({
 }) {
   return (
     <Highlight
-      {...defaultProps}
       code={children.trimEnd()}
       language={language}
       theme={undefined}
